@@ -34,9 +34,9 @@ async function RunCommand () {
     Log.warn('--all, --run_hooks and --run_sync are deprecated. Will behave as if flag was not passed. Please update your command to `npm run sync` in the future.')
   }
 
-  // Perform initial brave-core clone and checkout
+  // Perform initial courage-core clone and checkout
   if (program.init) {
-    Log.progress('Performing initial checkout of brave-core')
+    Log.progress('Performing initial checkout of courage-core')
     util.checkoutBraveCore()
   }
 
@@ -50,11 +50,11 @@ async function RunCommand () {
 
   let braveCoreRef = program.args[0]
   if (!braveCoreRef) {
-    braveCoreRef = program.init ? config.getProjectVersion('brave-core') : null
+    braveCoreRef = program.init ? config.getProjectVersion('courage-core') : null
   }
 
   if (braveCoreRef || program.init || program.force) {
-    // we're doing a reset of brave-core so try to stash any changes
+    // we're doing a reset of courage-core so try to stash any changes
     Log.progress('Stashing any local changes')
     util.runGit(config.braveCoreDir, ['stash'], true)
   }

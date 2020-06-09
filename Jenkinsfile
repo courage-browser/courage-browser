@@ -55,10 +55,10 @@ pipeline {
 }
 
 def setEnv() {
-    GITHUB_API = 'https://api.github.com/repos/brave'
+    GITHUB_API = 'https://api.github.com/repos/courage-browser'
     REPO = JOB_NAME.substring(0, JOB_NAME.indexOf('-build-pr'))
-    OTHER_REPO = REPO.equals('brave-browser') ? 'brave-core' : 'brave-browser'
-    def prDetails = readJSON(text: httpRequest(url: GITHUB_API + '/' + REPO + '/pulls?head=brave:' + CHANGE_BRANCH, customHeaders: [[name: 'Authorization', value: 'token ' + PR_BUILDER_TOKEN]]).content)[0]
+    OTHER_REPO = REPO.equals('courage-browser') ? 'courage-core' : 'courage-browser'
+    def prDetails = readJSON(text: httpRequest(url: GITHUB_API + '/' + REPO + '/pulls?head=courage-browser:' + CHANGE_BRANCH, customHeaders: [[name: 'Authorization', value: 'token ' + PR_BUILDER_TOKEN]]).content)[0]
     SKIP = prDetails.draft.equals(true) || prDetails.labels.count { label -> label.name.equalsIgnoreCase('CI/skip') }.equals(1)
     SKIP_ANDROID = prDetails.labels.count { label -> label.name.equalsIgnoreCase('CI/skip-android') }.equals(1)
     SKIP_IOS = prDetails.labels.count { label -> label.name.equalsIgnoreCase('CI/skip-ios') }.equals(1)
@@ -68,7 +68,7 @@ def setEnv() {
     RUN_NETWORK_AUDIT = prDetails.labels.count { label -> label.name.equalsIgnoreCase('CI/run-network-audit') }.equals(1)
     def branchExistsInOtherRepo = httpRequest(url: GITHUB_API + '/' + OTHER_REPO + '/branches/' + CHANGE_BRANCH, validResponseCodes: '100:499', customHeaders: [[name: 'Authorization', value: 'token ' + PR_BUILDER_TOKEN]]).status.equals(200)
     if (branchExistsInOtherRepo) {
-        def otherPrDetails = readJSON(text: httpRequest(url: GITHUB_API + '/' + OTHER_REPO + '/pulls?head=brave:' + CHANGE_BRANCH, customHeaders: [[name: 'Authorization', value: 'token ' + PR_BUILDER_TOKEN]]).content)[0]
+        def otherPrDetails = readJSON(text: httpRequest(url: GITHUB_API + '/' + OTHER_REPO + '/pulls?head=courage-browser:' + CHANGE_BRANCH, customHeaders: [[name: 'Authorization', value: 'token ' + PR_BUILDER_TOKEN]]).content)[0]
         if (otherPrDetails) {
             env.OTHER_PR_NUMBER = otherPrDetails.number
             SKIP = SKIP || otherPrDetails.draft.equals(true) || otherPrDetails.labels.count { label -> label.name.equalsIgnoreCase('CI/skip') }.equals(1)
@@ -113,7 +113,7 @@ def checkAndAbortBuild() {
 }
 
 def startBraveBrowserBuild() {
-    PIPELINE_NAME = 'pr-brave-browser-' + CHANGE_BRANCH.replace('/', '-')
+    PIPELINE_NAME = 'pr-courage-browser-' + CHANGE_BRANCH.replace('/', '-')
     jobDsl(scriptText: """
         pipelineJob('${PIPELINE_NAME}') {
             // this list has to match the parameters in the Jenkinsfile from devops repo

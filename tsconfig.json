@@ -12,7 +12,7 @@
     "moduleResolution": "node",
     "typeRoots": [
       "./node_modules/@types",
-      "./src/brave/components/definitions"
+      "./src/courage/components/definitions"
     ],
     // optional
     "forceConsistentCasingInFileNames": true,
@@ -22,6 +22,7 @@
     "noUnusedLocals": true
   },
   "include": [
-    "./src/brave/components/**/*.{ts,tsx}"
+    "./src/courage/components/**/*.{ts,tsx}"
   ]
 }
+ 

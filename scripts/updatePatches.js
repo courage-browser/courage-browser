@@ -19,7 +19,7 @@ module.exports = function RunCommand (options) {
   const chromiumDir = config.projects.chrome.dir
   const v8Dir = path.join(config.projects.chrome.dir, 'v8')
   const devtoolsFrontendSrcDir = path.join(chromiumDir, 'third_party', 'devtools-frontend', 'src')
-  const patchDir = path.join(config.projects['brave-core'].dir, 'patches')
+  const patchDir = path.join(config.projects['courage-core'].dir, 'patches')
   const v8PatchDir = path.join(patchDir, 'v8')
   const devtoolsFrontendSrcPatchDir = path.join(patchDir, 'devtools-frontend-src')
 

@@ -2,8 +2,9 @@
 
 ## Supported Versions
 
-All versions including and above the current stable release version number (the version downloadable on https://brave.com/download).
+Only the latest build from master
 
 ## Reporting a Vulnerability
 
-See https://hackerone.com/brave for details.
+We don't offer any bug-bounties, however we are happy to recieve any help we can get.
+The bugs might also affect the upstream brave repo, for that go to https://hackerone.com/brave for details.
